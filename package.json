@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-to-do-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sayyamyadav/nodejs-mongodb-devsecops-pipeline.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sayyamyadav/nodejs-mongodb-devsecops-pipeline/issues"
+  },
+  "homepage": "https://github.com/sayyamyadav/nodejs-mongodb-devsecops-pipeline#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "method-override": "^3.0.0",
+    "sanitizer": "^0.1.3"
+  }
+}
