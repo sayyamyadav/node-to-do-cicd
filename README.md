@@ -10,8 +10,8 @@ Follow the steps below to run the application locally:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/sayyamyadav/nodejs-mongodb-devsecops-pipeline.git
-cd nodejs-mongodb-devsecops-pipeline
+git clone https://github.com/sayyamyadav/node-to-do-cicd.git
+cd node-to-do-cicd
 
 # 2. Install dependencies
 npm install
