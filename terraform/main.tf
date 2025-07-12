@@ -61,12 +61,6 @@ resource "aws_s3_bucket_public_access_block" "example" {
 
 # S3 to Lambda notification
 resource "aws_s3_bucket_notification" "bucket_notification" {
-  bucket = aws_s3_bucket.example.id
-
-  lambda_function {
-    lambda_function_arn = "arn:aws:lambda:us-east-1:123456789012:function:my-function"
-    events              = ["s3:ObjectCreated:*"]
-  }
 }
 
 # 🔐 Grant S3 permission to invoke Lambda
