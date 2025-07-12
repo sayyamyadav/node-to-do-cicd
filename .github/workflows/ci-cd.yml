@@ -23,7 +23,7 @@ jobs:
     - name: 🔍 IaC Security Scan with Checkov
       uses: bridgecrewio/checkov-action@master
       with:
-        directory: ./terraform
+        directory: .
 
     - name: 🟢 Set up Node.js
       uses: actions/setup-node@v3
