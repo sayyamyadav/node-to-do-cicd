@@ -1,0 +1,56 @@
+name: Node.js CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+
+    services:
+      mongo:
+        image: mongo:5
+        ports:
+          - 27017:27017
+
+    steps:
+    - name: ⏳ Checkout code
+      uses: actions/checkout@v3
+
+    - name: 🟢 Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: 📦 Install dependencies
+      run: npm install
+
+    - name: ✅ Run tests (Optional)
+      run: echo "No tests defined"
+
+    - name: 🔍 Static Code Analysis (Semgrep)
+      uses: returntocorp/semgrep-action@v1
+      with:
+        config: auto
+
+    - name: 🐳 Docker build
+      run: docker build -t my-node-app:latest .
+
+    - name: 🔒 Image Vulnerability Scan (Trivy)
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: 'my-node-app:latest'
+        format: 'table'
+        exit-code: '1'
+        severity: 'CRITICAL,HIGH'
+
+    - name: 🚀 Push Docker image (if scans pass)
+      if: success()
+      run: |
+        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+        docker tag my-node-app:latest ${{ secrets.DOCKERHUB_USERNAME }}/my-node-app:latest
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-node-app:latest
+
