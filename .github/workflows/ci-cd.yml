@@ -31,10 +31,13 @@ jobs:
     - name: ✅ Run tests (Optional)
       run: echo "No tests defined"
 
-    - name: 🔍 Static Code Analysis (Semgrep)
-      uses: returntocorp/semgrep-action@v1
+    - name: 🔍 Static Code Analysis (SonarCloud)
+      uses: SonarSource/sonarcloud-github-action@v2
       with:
-        config: auto
+        projectBaseDir: .
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: 🐳 Docker build
       run: docker build -t my-node-app:latest .
