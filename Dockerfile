@@ -1,5 +1,6 @@
 # Stage 1 - Build Stage
-FROM node:18-alpine AS builder
+#FROM node:18-alpine AS builder
+FROM node:18-bullseye-slim AS builder
 
 # SET A WORK DIRECTORY
 WORKDIR /app
